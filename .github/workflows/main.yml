@@ -1,0 +1,21 @@
+---
+# This workflow integrates ShiftLeft with GitHub
+# Visit https://docs.shiftleft.io for help
+name: Qwiet AI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  preZero:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: QwietAI/qwiet-action@main
+      with:
+        lang: jar-without-blocklist
+      env:
+        SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
+        ENABLE_BEST_PRACTICES: true
